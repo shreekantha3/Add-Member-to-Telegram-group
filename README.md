@@ -1,48 +1,56 @@
-# addmember-telegram
-Use `python 3` to add member from Group A to Group B (migrate members of your group)
+#AddMember-Telegram is a Python 3 script that allows you to migrate members from one Telegram group (Group A) to another (Group B). This can be especially useful when you need to consolidate members from multiple groups into a single supergroup. Please ensure you have the necessary prerequisites and follow the guidelines below to use this script effectively.
 
 
-## Require
-* Environment of python 3 (Linux, Window)
-* Need about 20 accounts to run (Switches accounts automatically when blocked)
-* Each account needs to be in Source Group and Target Group
-* Notice your region phone
-* Your group must be a Super group
+
+Prerequisites
+To use this script, you will need the following:
+
+Python 3 environment (compatible with Linux and Windows)
+Approximately 20 Telegram accounts to run the script (accounts switch automatically when blocked)
+Each account should be a member of both the source and target groups
+Take note of your region's phone number format
+Your group must be a supergroup. If it's not already, follow the instructions here to convert it.
+
 
 https://www.wikihow.com/Convert-a-Telegram-Group-to-a-Supergroup-on-PC-or-Mac
 
-![Supper group](images/note_tele.png)
-![Upgraded Supper group](images/note_tele2.png)
+Usage
 
-## Guide line
+Step 1: Install the telethon package
+Install the telethon package using pip:
 
-* Step 1: Install package `telethon`
-```
 pip install telethon
-```
+
+Step 2: Create a configuration file (config.json)
 
 * Step 2: Create file config.json
-Copy file config.json from config.example.json
 
-```
+Copy the config.example.json file and create a config.json file. Update the following fields:
+
+
 {
-	"group_target": 1398120166, --> id target group
-	"group_source": 1490302444, --> id source group
-	"accounts": [ --> array account
+	"group_target": 1398120166, // Target group ID
+	"group_source": 1490302444, // Source group ID
+	"accounts": [ // Array of Telegram accounts
 		{
-			"phone": "+84XXXX",
-			"api_id": 1234566,
-			"api_hash": "57c6f3c72c2f21676d53be2eXXXXXX"
+			"phone": "+84XXXX", // Your phone number
+			"api_id": 1234566, // API ID from https://my.telegram.org/apps
+			"api_hash": "57c6f3c72c2f21676d53be2eXXXXXX" // API hash from https://my.telegram.org/apps
 		}
 	]
 }
-```
-`group_target` and `group_source`: after running get_data.py, check files in data/group
-`accounts`: list your Telegram accounts; and for each accounts/phone, create an app in https://my.telegram.org/apps and copy the `api_id` and  `api_hash` into the config file.
 
-* Step 3: After setting up your `config.json` file, run `python init_session.py`, enter phone and the code you received
 
-![Init session](images/step1.png)
+group_target and group_source: After running get_data.py, check the files in the data/group directory.
+
+accounts: List your Telegram accounts. For each account/phone number, create an app at https://my.telegram.org/apps and copy the api_id and api_hash into the config file.
+
+Step 3: Initialize sessions
+
+Run the following command to initialize sessions for your accounts:
+
+python init_session.py
+
 
 * Step 4: run `python get_data.py` to get data of group, data user and save file in folder `data`
 
@@ -74,9 +82,7 @@ Note: If your account gets blocked, go to https://web.telegram.org/#/im?p=@SpamB
 
 Done!
 
-## Ps: 
-This repo is now actively being maintained and updated by:
-south1907 and DanielTheGeek.
+
 
 Create a new issue if you have legit issues and we will do our best to resolve them.
 
